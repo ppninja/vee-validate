@@ -2129,10 +2129,9 @@ Validator.prototype._formatErrorMessage = function _formatErrorMessage (field, r
 Validator.prototype._getLocalizedParams = function _getLocalizedParams (rule, scope) {
     if ( scope === void 0 ) scope = '__global__';
 
-  if (~ ['after', 'before', 'confirmed'].indexOf(rule.name) &&
-      rule.params && rule.params[0]) {
+  if (~ ['after', 'before', 'confirmed'].indexOf(rule.name) && rule.params && rule.params[0]) {
     var param = this.$scopes[scope][rule.params[0]];
-    if (param && param.name) { return [param.name]; }
+    if (param && param.name) { return [this.dictionary.getAttribute(LOCALE, param.name, param.name)]; }
     return [this.dictionary.getAttribute(LOCALE, rule.params[0], rule.params[0])];
   }
 

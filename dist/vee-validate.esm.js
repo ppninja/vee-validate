@@ -1959,10 +1959,9 @@ class Validator {
    * Translates the parameters passed to the rule (mainly for target fields).
    */
   _getLocalizedParams(rule, scope = '__global__') {
-    if (~ ['after', 'before', 'confirmed'].indexOf(rule.name) &&
-        rule.params && rule.params[0]) {
+    if (~ ['after', 'before', 'confirmed'].indexOf(rule.name) && rule.params && rule.params[0]) {
       const param = this.$scopes[scope][rule.params[0]];
-      if (param && param.name) return [param.name];
+      if (param && param.name) return [this.dictionary.getAttribute(LOCALE, param.name, param.name)];
       return [this.dictionary.getAttribute(LOCALE, rule.params[0], rule.params[0])];
     }
 
